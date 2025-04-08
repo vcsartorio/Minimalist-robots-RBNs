@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ASCII'?>
+<sim-config 
+    max_time="12000"
+    arena_radius="0.925"
+    num_robots="10">
+</sim-config>

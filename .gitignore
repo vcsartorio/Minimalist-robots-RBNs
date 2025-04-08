@@ -1,0 +1,29 @@
+__pycache__
+.vscode/
+build
+build_local/
+conversion_scripts/*
+simulation_config/build/*
+python_test/*
+tracking/*
+src/behaviors/parameters_rbn.txt
+src/kilobots/build_local/*
+Argos3*
+Argos3-Kilobot*
+argos3-kilobot-master/*
+argos3-master/*
+argos3-kilobot-simulator/*
+argos3/*
+results/plots
+Data/EBN\ position\ data
+test_scripts/*
+rbn_performance_targets.txt
+LISTA.txt
+plot scripts/results*
+**/__pycache__
+*.pyc
+images/
+*_position.tsv
+*_time_results.tsv
+*.pkl
+data/

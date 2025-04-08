@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='ASCII'?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+
+  <framework>
+    <system threads="0"/>
+    <experiment length="3000" ticks_per_second="10"/>
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+
+    <kilobot_controller id="kbc_agent">
+      <actuators>
+        <kilobot_led implementation="default"/>
+        <differential_steering implementation="default" bias_avg="0.00015" bias_stddev="0.00270" factor_avg="1" factor_stddev="0.00010"/>
+        <!-- <leds implementation="default" medium="leds" /> -->
+        <kilobot_communication implementation="default"/>
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" noise_std_dev="5" distance_bias_mean="1.2" distance_bias_std_dev="0.17"/>
+        <!-- <kilobot_light implementation="rot_z_only" /> -->
+      </sensors>
+      <params behavior="build/behaviors_simulation/kilobotRBNencoded" linearvelocity="1.00" angularvelocity="45"/>
+    </kilobot_controller>
+
+    <kilobot_controller id="kbc_target">
+      <actuators>
+        <differential_steering implementation="default"/>
+        <kilobot_led implementation="default"/>
+
+        <!-- <leds implementation="default" medium="leds" /> -->
+        <kilobot_communication implementation="default"/>
+      </actuators>
+      <sensors>
+        <kilobot_communication implementation="default" medium="kilocomm" noise_std_dev="5" distance_bias_mean="1.2" distance_bias_std_dev="0.17"/>
+        <!-- <kilobot_light implementation="rot_z_only" /> -->
+      </sensors>
+      <params behavior="build/behaviors_simulation/Target"/>
+    </kilobot_controller>
+
+  </controllers>
+
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="2, 2, 1" center="0,0,0.5">
+    <!-- <light id="l0"
+           position="0,0,0.95"
+           orientation="0,0,0"
+           color="yellow"
+           intensity="1.0"
+          medium="leds"/> -->
+    <floor id="floor" source="loop_functions" pixels_per_meter="200"/>
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Loop functions * -->
+  <!-- ******************* -->
+  <loop_functions library="build/loop_functions/libloop_functions" 
+      label="ci_kilobot_loop_functions"
+      strategy="RBN"
+      num_robots="20" 
+      sampling_period_in_ticks="5" 
+      arena_radius="0.475" 
+      num_nodes="0"
+      target_posx="0"
+      target_posy="0.35"
+      id_simulation="1"
+      communication_range="0.18"
+      save_position="0">
+  </loop_functions>
+
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d"/>
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <kilobot_communication id="kilocomm"/>
+    <!-- <led id="leds" />  -->
+  </media>
+
+
+
+</argos-configuration>
